@@ -25,20 +25,25 @@ export default function ChatHeader({ receiver }) {
 
 const Style = {
   Wrapper: styled.div`
+    width: 432px;
+    height: 100%;
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid #dbdbdb;
   `,
   LeftWrapper: styled.div`
     width: 140px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-left: 20px;
   `,
   RightWrapper: styled.div`
     width: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-right: 20px;
   `,
   ReceiverProfile: styled.img`
     width: 36px;

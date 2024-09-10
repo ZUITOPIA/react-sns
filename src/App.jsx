@@ -11,6 +11,8 @@ const globalStyles = css`
     display: flex;
     justify-content: center;
     font-family: Arial, sans-serif;
+    overflow: hidden;
+    scroll-behavior: smooth;
   }
 `;
 
