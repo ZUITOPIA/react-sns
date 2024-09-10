@@ -48,12 +48,11 @@ const Style = {
   `,
   BodyWrapper: styled.div`
     width: 430px;
-    height: 92.5vh;
+    height: 93vh;
     border: 1px solid lightgray;
     overflow-y: scroll;
   `,
   Body: styled.div`
-    width: 92.5%;
     padding: 22px;
   `,
 };
