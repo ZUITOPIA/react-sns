@@ -11,32 +11,22 @@ export default function ChatBody({ messages, users }) {
             <Style.OutWrapper isSender={message.isSender}>
               <Style.InnerWrapper isSender={message.isSender}>
                 {!message.isSender ? (
-                  <img
-                    style={{
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
-                    }}
+                  <Style.ProfileImg
                     src={`/${sender?.profilePicture}`}
                     alt={sender?.userName}
                   />
                 ) : (
-                  <img
-                    style={{
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
-                    }}
+                  <Style.ProfileImg
                     src={`/${sender?.profilePicture}`}
                     alt={sender?.userName}
                   />
                 )}
 
-                <span>{sender?.userId}</span>
+                {sender?.userId}
                 <Style.TextBox isSender={message.isSender}>
                   {message.content}
                 </Style.TextBox>
-                <div>{new Date(message.timestamp).toLocaleTimeString()}</div>
+                {new Date(message.timestamp).toLocaleTimeString()}
               </Style.InnerWrapper>
             </Style.OutWrapper>
           </>
@@ -60,8 +50,12 @@ const Style = {
     padding: 12px;
     border-radius: ${(props) =>
       props.isSender === 1 ? '20px 4px 20px 24px' : '4px 20px 20px 24px'};
-
     background-color: ${(props) =>
       props.isSender == 1 ? '#6245ff' : '#e9e9e9'};
+  `,
+  ProfileImg: styled.img`
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
   `,
 };
