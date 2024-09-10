@@ -29,27 +29,28 @@ export default function Chat() {
 
   return (
     <>
-      <Style.Wrapper>
-        <Style.Header>
-          <ChatHeader receiver={receiver} />
-        </Style.Header>
+      <Style.Header>
+        <ChatHeader receiver={receiver} />
+      </Style.Header>
+      <Style.BodyWrapper>
         <Style.Body>
           <ChatBody messages={messages} users={users} />
         </Style.Body>
-      </Style.Wrapper>
+      </Style.BodyWrapper>
     </>
   );
 }
 
 const Style = {
-  Wrapper: styled.div`
-    width: 430px;
-    height: 1134px;
-    border: 1px solid lightgray;
-  `,
   Header: styled.div`
     padding: 22px;
-    border-bottom: 1px solid lightgray;
+    border: 1px solid lightgray;
+  `,
+  BodyWrapper: styled.div`
+    width: 430px;
+    height: 92.5vh;
+    border: 1px solid lightgray;
+    overflow-y: scroll;
   `,
   Body: styled.div`
     width: 92.5%;
