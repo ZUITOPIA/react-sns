@@ -1,3 +1,3 @@
-export default function ChatHeader() {
-  return <>머리</>;
+export default function ChatHeader({ receiver }) {
+  return <div>{receiver?.userName}</div>;
 }
