@@ -1,3 +1,5 @@
+import styled from '@emotion/styled';
+
 export default function ChatBody({ messages, users }) {
   return (
     <>
@@ -6,25 +8,8 @@ export default function ChatBody({ messages, users }) {
 
         return (
           <>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: message.isSender ? 'flex-end' : 'flex-start',
-              }}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: message.isSender ? 'flex-end' : 'flex-start',
-                  maxWidth: '60%',
-                  padding: '12px',
-                  borderRadius: message.isSender
-                    ? '20px 4px 20px 24px'
-                    : '4px 20px 20px 24px',
-                  backgroundColor: message.isSender ? '#6245ff' : '#e9e9e9',
-                }}
-              >
+            <Style.OutWrapper isSender={message.isSender}>
+              <Style.InnerWrapper isSender={message.isSender}>
                 {!message.isSender ? (
                   <img
                     style={{
@@ -48,13 +33,35 @@ export default function ChatBody({ messages, users }) {
                 )}
 
                 <span>{sender?.userId}</span>
-                <div>{message.content}</div>
+                <Style.TextBox isSender={message.isSender}>
+                  {message.content}
+                </Style.TextBox>
                 <div>{new Date(message.timestamp).toLocaleTimeString()}</div>
-              </div>
-            </div>
+              </Style.InnerWrapper>
+            </Style.OutWrapper>
           </>
         );
       })}
     </>
   );
 }
+const Style = {
+  OutWrapper: styled.div`
+    display: flex;
+    justify-content: ${(props) => (props.isSender ? 'flex-end' : 'flex-start')};
+  `,
+  InnerWrapper: styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: ${(props) => (props.isSender ? 'flex-end' : 'flex-start')};
+    max-width: 80%;
+  `,
+  TextBox: styled.div`
+    padding: 12px;
+    border-radius: ${(props) =>
+      props.isSender === 1 ? '20px 4px 20px 24px' : '4px 20px 20px 24px'};
+
+    background-color: ${(props) =>
+      props.isSender == 1 ? '#6245ff' : '#e9e9e9'};
+  `,
+};
