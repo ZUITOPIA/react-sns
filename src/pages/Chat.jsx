@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import ChatHeader from '../components/Chat/ChatHeader';
 import ChatBody from '../components/Chat/ChatBody';
+import ChatFooter from '../components/Chat/ChatFooter';
 
 export default function Chat() {
   const [messages, setMessages] = useState([]);
@@ -35,10 +36,9 @@ export default function Chat() {
       <Style.BodyWrapper>
         <Style.Body>
           <ChatBody messages={messages} users={users} />
-          <Style.Footer></Style.Footer>
         </Style.Body>
       </Style.BodyWrapper>
-      <Style.Footer></Style.Footer>
+      <ChatFooter />
     </Style.Wrapper>
   );
 }
@@ -54,28 +54,21 @@ const Style = {
     overflow: scroll;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
-    padding-top: 80px;
+    position: relative;
   `,
   Header: styled.div`
     position: fixed;
     top: 0;
-    /* width: 82%; */
     height: 80px;
     background-color: white;
   `,
   BodyWrapper: styled.div`
     width: 430px;
     height: 100%;
+    margin-top: 80px;
   `,
   Body: styled.div`
     padding: 22px;
-    padding-bottom: 160px;
-  `,
-  Footer: styled.div`
-    width: 410px;
-    position: fixed;
-    bottom: 0;
-    height: 80px;
-    background-color: rebeccapurple;
+    padding-bottom: 85px;
   `,
 };
