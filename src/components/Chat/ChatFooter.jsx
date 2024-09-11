@@ -1,21 +1,42 @@
 import styled from '@emotion/styled';
-export default function ChatFooter() {
+import { useState } from 'react';
+
+export default function ChatFooter({ onSendMessage }) {
+  const [message, setMessage] = useState('');
+
+  const handleInputChange = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (message.trim()) {
+      onSendMessage(message);
+      setMessage('');
+    }
+  };
+
   return (
-    <>
-      <Style.FooterWapper>
-        <Style.SearchLogoWrapper>
-          <Style.SearchLogo src="/search.png" alt="search" />
-        </Style.SearchLogoWrapper>
-        <Style.TextAreaWrapper placeholder="메세지 보내기" />
-        <Style.SendMessageLogoWrapper>
-          <Style.SendMessageLogo src="/plane.png" alt="send" />
-        </Style.SendMessageLogoWrapper>
-      </Style.FooterWapper>
-    </>
+    <Style.Wapper>
+      <Style.SearchLogoWrapper>
+        <Style.SearchLogo src="/search.png" alt="search" />
+      </Style.SearchLogoWrapper>
+      <form onSubmit={handleSubmit}>
+        <Style.TextAreaWrapper
+          placeholder="메세지 보내기"
+          value={message}
+          onChange={handleInputChange}
+        />
+      </form>
+      <Style.SendMessageLogoWrapper onClick={handleSubmit}>
+        <Style.SendMessageLogo src="/plane.png" alt="send" />
+      </Style.SendMessageLogoWrapper>
+    </Style.Wapper>
   );
 }
+
 const Style = {
-  FooterWapper: styled.div`
+  Wapper: styled.div`
     width: 388px;
     position: fixed;
     border-radius: 24px;
@@ -44,7 +65,7 @@ const Style = {
     height: 18px;
     cursor: pointer;
   `,
-  TextAreaWrapper: styled.textarea`
+  TextAreaWrapper: styled.input`
     width: 296px;
     height: 18px;
     padding: 8px 16px;

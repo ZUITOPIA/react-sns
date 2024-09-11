@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import styled from '@emotion/styled';
 import ChatHeader from '../components/Chat/ChatHeader';
 import ChatBody from '../components/Chat/ChatBody';
@@ -7,6 +7,7 @@ import ChatFooter from '../components/Chat/ChatFooter';
 export default function Chat() {
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState({});
+  const chatBodyRef = useRef(null);
 
   const getMessages = async () => {
     const res = await fetch('/data/messages.json');
@@ -18,6 +19,22 @@ export default function Chat() {
     const res = await fetch('/data/users.json');
     const data = await res.json();
     setUsers(data.users);
+  };
+
+  const handleSendMessage = async (content) => {
+    const newMessage = {
+      userId: 'hijh_0522',
+      isSender: true,
+      content,
+      timestamp: new Date().toISOString(),
+    };
+
+    const updatedMessages = [...messages, newMessage];
+    setMessages(updatedMessages);
+
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const receiverId = messages.find((message) => !message.isSender)?.userId;
@@ -34,11 +51,11 @@ export default function Chat() {
         <ChatHeader receiver={receiver} />
       </Style.Header>
       <Style.BodyWrapper>
-        <Style.Body>
+        <Style.Body ref={chatBodyRef}>
           <ChatBody messages={messages} users={users} />
         </Style.Body>
       </Style.BodyWrapper>
-      <ChatFooter />
+      <ChatFooter onSendMessage={handleSendMessage} />
     </Style.Wrapper>
   );
 }
