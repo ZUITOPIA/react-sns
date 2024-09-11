@@ -20,7 +20,7 @@ export default function Chat() {
     setUsers(data.users);
   };
 
-  const receiverId = messages.find((message) => message.isSender === 0)?.userId;
+  const receiverId = messages.find((message) => !message.isSender)?.userId;
   const receiver = users[receiverId];
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const Style = {
   BodyWrapper: styled.div`
     width: 430px;
     height: 100%;
-    margin-top: 80px;
+    margin-top: 70px;
   `,
   Body: styled.div`
     padding: 22px;

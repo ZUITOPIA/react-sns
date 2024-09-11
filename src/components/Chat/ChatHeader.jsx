@@ -54,10 +54,12 @@ const Style = {
   Icon: styled.img`
     width: 22px;
     height: 22px;
+    cursor: pointer;
   `,
   IconVideo: styled.img`
     width: 32px;
     height: 32px;
+    cursor: pointer;
   `,
   UserInfo: styled.div`
     display: flex;

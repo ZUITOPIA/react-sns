@@ -40,8 +40,9 @@ const Style = {
   `,
 
   SearchLogo: styled.img`
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
   `,
   TextAreaWrapper: styled.textarea`
     width: 296px;
@@ -58,6 +59,7 @@ const Style = {
     width: 22px;
     height: 22px;
     filter: invert();
+    cursor: pointer;
   `,
   SendMessageLogoWrapper: styled.div`
     width: 56px;

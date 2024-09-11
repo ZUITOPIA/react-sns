@@ -1,76 +1,76 @@
 {
   "messages": [
     {
-      "isSender": 0,
+      "isSender": false,
       "userId": "dlwlrma",
       "content": "꿈에서도 그리운 목소리는 이름 불러도 대답을 하지 않아",
       "timestamp": "2024-09-08T10:00:00Z"
     },
     {
-      "isSender": 1,
+      "isSender": true,
       "userId": "hijh_0522",
       "content": "글썽이는 그 메아리만 돌아와 그 소리를 나 혼자서 들어",
       "timestamp": "2024-09-08T10:01:00Z"
     },
     {
-      "isSender": 0,
+      "isSender": false,
       "userId": "dlwlrma",
       "content": "깨어질 듯이 차가워도",
       "timestamp": "2024-09-08T10:02:00Z"
     },
     {
-      "isSender": 1,
+      "isSender": true,
       "userId": "hijh_0522",
       "content": "이번에는 결코 놓지 않을게 아득히 멀어진 그날의 두 손을",
       "timestamp": "2024-09-08T10:03:00Z"
     },
     {
-      "isSender": 0,
+      "isSender": false,
       "userId": "dlwlrma",
       "content": "끝없이 길었던 짙고 어두운 밤 사이로 조용히 사라진 니 소원을 알아",
       "timestamp": "2024-09-10T12:02:00Z"
     },
     {
-      "isSender": 1,
+      "isSender": true,
       "userId": "hijh_0522",
       "content": "가자 이 새벽이 끝나는 곳으로",
       "timestamp": "2024-09-08T12:03:00Z"
     },
     {
-      "isSender": 0,
+      "isSender": false,
       "userId": "dlwlrma",
-      "content": "꿈에서도 그리운 목소리는 이름 불러도 대답을 하지 않아",
-      "timestamp": "2024-09-08T12:04:00Z"
+      "content": "뿡뿡",
+      "timestamp": "2024-08-08T12:05:00Z"
     },
     {
-      "isSender": 0,
+      "isSender": false,
       "userId": "dlwlrma",
-      "content": "글썽이는 그 메아리만 돌아와 그 소리를 나 혼자서 들어",
+      "content": "ddd어",
       "timestamp": "2024-09-08T12:05:00Z"
     },
     {
-      "isSender": 0,
+      "isSender": false,
       "userId": "dlwlrma",
-      "content": "깨어질 듯이 차가워도",
-      "timestamp": "2024-09-08T12:06:00Z"
+      "content": "오호호",
+      "timestamp": "2024-09-08T14:05:00Z"
     },
     {
-      "isSender": 1,
+      "isSender": true,
       "userId": "hijh_0522",
-      "content": "이번에는 결코 놓지 않을게 아득히 멀어진 그날의 두 손을",
-      "timestamp": "2024-09-08T12:07:00Z"
+      "content": "오호호오호호오호호",
+      "timestamp": "2024-09-13T14:24:00Z"
     },
     {
-      "isSender": 0,
+      "isSender": false,
       "userId": "dlwlrma",
-      "content": "끝없이 길었던 짙고 어두운 밤 사이로 조용히 사라진 니 소원을 알아",
-      "timestamp": "2024-09-08T12:08:00Z"
+      "content": "왜",
+      "timestamp": "2024-09-19T14:24:00Z"
     },
     {
-      "isSender": 1,
+      "isSender": true,
       "userId": "hijh_0522",
-      "content": "가자 이 새벽이 끝나는 곳으로",
-      "timestamp": "2024-09-08T12:10:00Z"
+      "content": "오호호이잉",
+      "timestamp": "2024-09-19T14:25:00Z"
     }
   ]
 }
