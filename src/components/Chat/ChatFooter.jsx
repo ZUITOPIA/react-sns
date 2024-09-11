@@ -46,10 +46,10 @@ const Style = {
   `,
   TextAreaWrapper: styled.textarea`
     width: 296px;
-    height: 26px;
+    height: 18px;
     padding: 8px 16px;
     resize: none;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     border: none;
     background: none;

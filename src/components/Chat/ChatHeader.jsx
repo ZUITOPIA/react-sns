@@ -10,8 +10,12 @@ export default function ChatHeader({ receiver }) {
           <Style.ReceiverProfile src="/dlwlrma.jpg" alt="profile" />
 
           <Style.UserInfo>
-            <span>{receiver?.userName}</span>
-            <span> {receiver?.userId}</span>
+            <span style={{ fontSize: '18px', fontWeight: 'bold' }}>
+              {receiver?.userName}
+            </span>
+            <span style={{ fontSize: '12px', color: '#979797' }}>
+              {receiver?.userId}
+            </span>
           </Style.UserInfo>
         </Style.LeftWrapper>
         <Style.RightWrapper>
@@ -62,7 +66,9 @@ const Style = {
     cursor: pointer;
   `,
   UserInfo: styled.div`
+    height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
   `,
 };
