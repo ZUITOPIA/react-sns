@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useEffect, useRef } from 'react';
 
 export default function ChatBody({ messages, users }) {
   const sortedMessages = [...messages].sort(
@@ -6,10 +7,16 @@ export default function ChatBody({ messages, users }) {
   );
 
   let lastDate = null;
+  const lastMessageRef = useRef(null);
+  useEffect(() => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
 
   return (
     <>
-      {sortedMessages.map((message) => {
+      {sortedMessages.map((message, index) => {
         const sender = users[message.userId];
         const messageDate = new Date(message.timestamp).toLocaleDateString();
 
@@ -20,42 +27,52 @@ export default function ChatBody({ messages, users }) {
 
         return (
           <>
-            {showDate && <Style.Date>{messageDate}</Style.Date>}
+            <div
+              ref={index === sortedMessages.length - 1 ? lastMessageRef : null}
+            >
+              {showDate && <Style.Date>{messageDate}</Style.Date>}
 
-            <Style.OutWrapper isSender={isSender}>
-              <Style.ProfileImg
-                src={`/${sender?.profilePicture}`}
-                alt={sender?.userName}
-              />
+              <Style.OutWrapper isSender={isSender}>
+                <Style.ProfileImg
+                  src={`/${sender?.profilePicture}`}
+                  alt={sender?.userName}
+                />
 
-              <Style.InnerWrapper isSender={isSender}>
-                <span
-                  style={{
-                    fontSize: '14px',
-                    color: '#979797',
-                    marginBottom: '5px',
-                  }}
-                >
-                  {sender?.userId}
-                </span>
+                <Style.InnerWrapper isSender={isSender}>
+                  <span
+                    style={{
+                      fontSize: '14px',
+                      color: '#979797',
+                      marginBottom: '5px',
+                    }}
+                  >
+                    {sender?.userId}
+                  </span>
 
-                <div style={{ display: 'flex' }}>
-                  {isSender && (
-                    <Style.DateBox isSender={isSender}>
-                      {new Date(message.timestamp).toLocaleTimeString()}
-                    </Style.DateBox>
-                  )}
-                  <Style.TextBox isSender={isSender}>
-                    {message.content}
-                  </Style.TextBox>
-                  {!isSender && (
-                    <Style.DateBox isSender={isSender}>
-                      {new Date(message.timestamp).toLocaleTimeString()}
-                    </Style.DateBox>
-                  )}
-                </div>
-              </Style.InnerWrapper>
-            </Style.OutWrapper>
+                  <div style={{ display: 'flex' }}>
+                    {isSender && (
+                      <Style.DateBox isSender={isSender}>
+                        {new Date(message.timestamp).toLocaleTimeString([], {
+                          hour: '2-digit',
+                          minute: '2-digit',
+                        })}
+                      </Style.DateBox>
+                    )}
+                    <Style.TextBox isSender={isSender}>
+                      {message.content}
+                    </Style.TextBox>
+                    {!isSender && (
+                      <Style.DateBox isSender={isSender}>
+                        {new Date(message.timestamp).toLocaleTimeString([], {
+                          hour: '2-digit',
+                          minute: '2-digit',
+                        })}
+                      </Style.DateBox>
+                    )}
+                  </div>
+                </Style.InnerWrapper>
+              </Style.OutWrapper>
+            </div>
           </>
         );
       })}
@@ -80,10 +97,10 @@ const Style = {
     display: flex;
     flex-direction: column;
     align-items: ${(props) => (props.isSender ? 'flex-end' : 'flex-start')};
-    max-width: 75%;
     margin: ${(props) => (props.isSender ? '0 10px 0 0' : '0 0 0 10px')};
   `,
   TextBox: styled.div`
+    max-width: 70%;
     padding: 10px 13px;
     margin: 2px 0 2px 0;
     border-radius: ${(props) =>
