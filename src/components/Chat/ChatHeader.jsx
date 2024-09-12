@@ -5,9 +5,9 @@ export default function ChatHeader({ receiver }) {
     <>
       <Style.Wrapper>
         <Style.LeftWrapper>
-          <Style.Icon src="/left-arrow.png" alt="arrow" />
+          <Style.Icon src="/images/left-arrow.png" alt="arrow" />
 
-          <Style.ReceiverProfile src="/dlwlrma.jpg" alt="profile" />
+          <Style.ReceiverProfile src="/images/dlwlrma.jpg" alt="profile" />
 
           <Style.UserInfo>
             <span style={{ fontSize: '18px', fontWeight: 'bold' }}>
@@ -19,8 +19,8 @@ export default function ChatHeader({ receiver }) {
           </Style.UserInfo>
         </Style.LeftWrapper>
         <Style.RightWrapper>
-          <Style.Icon src="/alarm.png" alt="profile" />
-          <Style.IconVideo src="/video.png" alt="profile" />
+          <Style.Icon src="/images/alarm.png" alt="profile" />
+          <Style.IconVideo src="/images/video.png" alt="profile" />
         </Style.RightWrapper>
       </Style.Wrapper>
     </>

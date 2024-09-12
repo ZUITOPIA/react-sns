@@ -19,7 +19,7 @@ export default function ChatFooter({ onSendMessage }) {
   return (
     <Style.Wapper>
       <Style.SearchLogoWrapper>
-        <Style.SearchLogo src="/search.png" alt="search" />
+        <Style.SearchLogo src="/images/search.png" alt="search" />
       </Style.SearchLogoWrapper>
       <form onSubmit={handleSubmit}>
         <Style.TextAreaWrapper
@@ -29,7 +29,7 @@ export default function ChatFooter({ onSendMessage }) {
         />
       </form>
       <Style.SendMessageLogoWrapper onClick={handleSubmit}>
-        <Style.SendMessageLogo src="/plane.png" alt="send" />
+        <Style.SendMessageLogo src="/images/plane.png" alt="send" />
       </Style.SendMessageLogoWrapper>
     </Style.Wapper>
   );
