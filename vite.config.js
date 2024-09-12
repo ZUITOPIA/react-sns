@@ -5,16 +5,13 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [
     react({
-      jsxImportSource: '@emotion/react',
+      babel: {
+        plugins: ['@emotion/babel-plugin'], // Emotion Babel 플러그인 추가
+      },
     }),
   ],
   server: {
     port: 3000,
     open: true,
-  },
-  build: {
-    rollupOptions: {
-      external: ['@emotion/react/jsx-runtime'], // 외부화 처리
-    },
   },
 });
