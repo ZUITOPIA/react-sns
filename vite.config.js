@@ -12,4 +12,9 @@ export default defineConfig({
     port: 3000,
     open: true,
   },
+  build: {
+    rollupOptions: {
+      external: ['@emotion/react/jsx-runtime'], // 외부화 처리
+    },
+  },
 });
