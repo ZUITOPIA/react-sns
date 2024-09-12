@@ -107,6 +107,8 @@ const Style = {
       props.isSender ? '20px 4px 20px 24px' : '4px 20px 20px 24px'};
     background-color: ${(props) => (props.isSender ? '#6245ff' : '#e9e9e9')};
     color: ${(props) => (props.isSender ? '#fff' : '#1a1a1a')};
+    white-space: pre-wrap;
+    word-break: break-word;
   `,
   DateBox: styled.div`
     height: 65%;
