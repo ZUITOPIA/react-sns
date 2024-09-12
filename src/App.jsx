@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { Global, css } from '@emotion/react';
-import Chat from './pages/chat';
+import Chat from './pages/Chat';
 
 const globalStyles = css`
   body {
