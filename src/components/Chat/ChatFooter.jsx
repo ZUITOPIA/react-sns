@@ -51,7 +51,7 @@ const Style = {
     padding: 0 12px;
   `,
   SearchLogoWrapper: styled.div`
-    width: 32px;
+    width: 50px;
     height: 32px;
     border-radius: 20px;
     background-color: white;
@@ -66,7 +66,7 @@ const Style = {
     cursor: pointer;
   `,
   TextAreaWrapper: styled.input`
-    width: 296px;
+    width: 276px;
     height: 18px;
     padding: 8px 16px;
     resize: none;
@@ -83,7 +83,7 @@ const Style = {
     cursor: pointer;
   `,
   SendMessageLogoWrapper: styled.div`
-    width: 56px;
+    width: 80px;
     height: 36px;
     background-color: #445ffe;
     border-radius: 24px;
