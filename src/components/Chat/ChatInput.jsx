@@ -1,18 +1,16 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import useInput from '../hooks/useInput';
 
 export default function ChatInput({ onSendMessage }) {
-  const [message, setMessage] = useState('');
+  const [inputValue, handleChange, setInputValue] = useInput('');
 
-  const handleInputChange = (e) => {
-    setMessage(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (message.trim()) {
-      onSendMessage(message);
-      setMessage('');
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    if (inputValue.trim() !== '') {
+      onSendMessage(inputValue);
+      setInputValue('');
+    } else {
+      alert('입력된 메세지가 없습니다.');
     }
   };
 
@@ -21,14 +19,16 @@ export default function ChatInput({ onSendMessage }) {
       <Style.SearchLogoWrapper>
         <Style.SearchLogo src="/images/search.png" alt="search" />
       </Style.SearchLogoWrapper>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleFormSubmit}>
         <Style.TextAreaWrapper
+          type="text"
+          value={inputValue}
+          onChange={handleChange}
           placeholder="메세지 보내기"
-          value={message}
-          onChange={handleInputChange}
+          autoFocus
         />
       </form>
-      <Style.SendMessageLogoWrapper onClick={handleSubmit}>
+      <Style.SendMessageLogoWrapper onClick={handleFormSubmit}>
         <Style.SendMessageLogo src="/images/plane.png" alt="send" />
       </Style.SendMessageLogoWrapper>
     </Style.Wapper>
