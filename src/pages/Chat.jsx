@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import styled from '@emotion/styled';
 import ChatHeader from '../components/Chat/ChatHeader';
 import ChatBody from '../components/Chat/ChatBody';
-import ChatFooter from '../components/Chat/ChatFooter';
+import ChatInput from '../components/Chat/ChatInput';
 
 export default function Chat() {
   const [messages, setMessages] = useState([]);
@@ -55,7 +55,7 @@ export default function Chat() {
           <ChatBody messages={messages} users={users} />
         </Style.Body>
       </Style.BodyWrapper>
-      <ChatFooter onSendMessage={handleSendMessage} />
+      <ChatInput onSendMessage={handleSendMessage} />
     </Style.Wrapper>
   );
 }

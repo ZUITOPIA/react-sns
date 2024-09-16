@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-export default function ChatFooter({ onSendMessage }) {
+export default function ChatInput({ onSendMessage }) {
   const [message, setMessage] = useState('');
 
   const handleInputChange = (e) => {
