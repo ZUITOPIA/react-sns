@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { format } from 'date-fns';
 
 const Message = ({ message, sender, isSender }) => {
   return (
@@ -22,19 +23,13 @@ const Message = ({ message, sender, isSender }) => {
         <div style={{ display: 'flex' }}>
           {isSender && (
             <Style.DateBox isSender={isSender}>
-              {new Date(message.timestamp).toLocaleTimeString([], {
-                hour: '2-digit',
-                minute: '2-digit',
-              })}
+              {format(new Date(message.timestamp), 'hh:mm a')}
             </Style.DateBox>
           )}
           <Style.TextBox isSender={isSender}>{message.content}</Style.TextBox>
           {!isSender && (
             <Style.DateBox isSender={isSender}>
-              {new Date(message.timestamp).toLocaleTimeString([], {
-                hour: '2-digit',
-                minute: '2-digit',
-              })}
+              {format(new Date(message.timestamp), 'hh:mm a')}
             </Style.DateBox>
           )}
         </div>
