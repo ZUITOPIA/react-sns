@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Text } from '../styles/UI';
 
 export default function ChatHeader({ receiver }) {
   return (
@@ -10,12 +11,8 @@ export default function ChatHeader({ receiver }) {
           <Style.ReceiverProfile src="/images/dlwlrma.jpg" alt="profile" />
 
           <Style.UserInfo>
-            <span style={{ fontSize: '18px', fontWeight: 'bold' }}>
-              {receiver?.userName}
-            </span>
-            <span style={{ fontSize: '12px', color: '#979797' }}>
-              {receiver?.userId}
-            </span>
+            <Text.MiniTitle>{receiver?.userName}</Text.MiniTitle>
+            <Text.Body1>{receiver?.userId}</Text.Body1>
           </Style.UserInfo>
         </Style.LeftWrapper>
         <Style.RightWrapper>

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { format } from 'date-fns';
+import { Text } from '../styles/UI';
 
 const Message = ({ message, sender, isSender }) => {
   return (
@@ -10,15 +11,7 @@ const Message = ({ message, sender, isSender }) => {
       />
 
       <Style.InnerWrapper isSender={isSender}>
-        <span
-          style={{
-            fontSize: '14px',
-            color: '#979797',
-            marginBottom: '5px',
-          }}
-        >
-          {sender?.userId}
-        </span>
+        <Text.Body2>{sender?.userId}</Text.Body2>
 
         <div style={{ display: 'flex' }}>
           {isSender && (

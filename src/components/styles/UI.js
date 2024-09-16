@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const Text = {
   Title: styled.div`
@@ -11,21 +11,17 @@ export const Text = {
     font-weight: 650;
     font-size: 18px;
     display: inline-block;
-    /* color: #464979; */
-    color: gray;
   `,
-  TodoBody: styled.div`
-    font-weight: 350;
-    color: #cbcbcd;
-    font-size: 16px;
+  Body1: styled.div`
+    font-size: 12px;
+    color: #979797;
     display: inline-block;
   `,
-  DoneBody: styled.div`
-    font-weight: 350;
-    font-size: 16px;
-    color: gray;
+  Body2: styled.div`
+    font-size: 14px;
+    color: #979797;
     display: inline-block;
-    text-decoration-line: line-through;
+    margin-bottom: 3px;
   `,
 };
 
@@ -33,7 +29,7 @@ export const Button = {
   CheckedBox: styled.div`
     width: 18px;
     height: 18px;
-    background-image: url("/check.png");
+    background-image: url('/check.png');
     background-size: contain;
     border-radius: 20px;
     opacity: 0.5;
@@ -52,7 +48,7 @@ export const Button = {
   DeleteBtn: styled.div`
     width: 14px;
     height: 14px;
-    background-image: url("/delete.png");
+    background-image: url('/delete.png');
     background-size: contain;
     cursor: pointer;
     margin: 20px;
