@@ -1,25 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import { Global, css } from '@emotion/react';
+import { Global } from '@emotion/react';
 import Chat from './pages/Chat';
-
-const globalStyles = css`
-  body {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
-    scroll-behavior: smooth;
-  }
-`;
+import { GlobalStyles } from './components/styles/globalStyles';
 
 function App() {
   return (
     <>
-      <Global styles={globalStyles} />
+      <Global styles={GlobalStyles} />
       <Chat />
     </>
   );
