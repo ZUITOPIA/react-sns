@@ -2,10 +2,6 @@ import styled from '@emotion/styled';
 import { useEffect, useRef } from 'react';
 
 export default function ChatBody({ messages, users }) {
-  const sortedMessages = [...messages].sort(
-    (a, b) => new Date(a.timestamp) - new Date(b.timestamp)
-  );
-
   let lastDate = null;
   const lastMessageRef = useRef(null);
 
@@ -17,7 +13,7 @@ export default function ChatBody({ messages, users }) {
 
   return (
     <>
-      {sortedMessages.map((message, index) => {
+      {messages.map((message, index) => {
         const sender = users[message.userId];
         const messageDate = new Date(message.timestamp).toLocaleDateString();
 
@@ -28,8 +24,8 @@ export default function ChatBody({ messages, users }) {
 
         return (
           <div
-            key={message.timestamp || index} // 고유한 key prop 추가
-            ref={index === sortedMessages.length - 1 ? lastMessageRef : null}
+            key={message.timestamp}
+            ref={index === messages.length - 1 ? lastMessageRef : null}
           >
             {showDate && <Style.Date>{messageDate}</Style.Date>}
 

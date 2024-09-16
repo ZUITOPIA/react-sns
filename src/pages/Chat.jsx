@@ -11,9 +11,17 @@ export default function Chat() {
   const [messages, setMessages] = useState(messagesData.messages);
   const [users, setUsers] = useState(usersData.users);
 
-  const receiverId = useMemo(
-    () => messages.find((message) => !message.isSender)?.userId,
+  const sortedMessages = useMemo(
+    () =>
+      [...messages].sort(
+        (a, b) => new Date(a.timestamp) - new Date(b.timestamp)
+      ),
     [messages]
+  ); // 메세지 데이터 받아오면서 바로 정렬할 수 있도록 위치 변경
+
+  const receiverId = useMemo(
+    () => sortedMessages.find((message) => !message.isSender)?.userId,
+    [sortedMessages]
   ); // 메시지 변경될 때만 수신자 업데이트
 
   const receiver = users[receiverId];
