@@ -1,25 +1,17 @@
-import { useEffect, useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import styled from '@emotion/styled';
 import ChatHeader from '../components/Chat/ChatHeader';
 import ChatBody from '../components/Chat/ChatBody';
 import ChatInput from '../components/Chat/ChatInput';
 
+import messagesData from '../data/messages.json';
+import usersData from '../data/users.json';
+
 export default function Chat() {
-  const [messages, setMessages] = useState([]);
-  const [users, setUsers] = useState({});
+  const [messages, setMessages] = useState(messagesData.messages);
+  const [users, setUsers] = useState(usersData.users);
+
   const chatBodyRef = useRef(null);
-
-  const getMessages = async () => {
-    const res = await fetch('/data/messages.json');
-    const data = await res.json();
-    setMessages(data.messages);
-  };
-
-  const getUsers = async () => {
-    const res = await fetch('/data/users.json');
-    const data = await res.json();
-    setUsers(data.users);
-  };
 
   const handleSendMessage = async (content) => {
     const newMessage = {
@@ -29,21 +21,11 @@ export default function Chat() {
       timestamp: new Date().toISOString(),
     };
 
-    const updatedMessages = [...messages, newMessage];
-    setMessages(updatedMessages);
-
-    if (chatBodyRef.current) {
-      chatBodyRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
+    setMessages((prev) => [...prev, newMessage]);
   };
 
   const receiverId = messages.find((message) => !message.isSender)?.userId;
   const receiver = users[receiverId];
-
-  useEffect(() => {
-    getMessages();
-    getUsers();
-  }, []);
 
   return (
     <Style.Wrapper>

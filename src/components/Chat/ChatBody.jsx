@@ -8,6 +8,7 @@ export default function ChatBody({ messages, users }) {
 
   let lastDate = null;
   const lastMessageRef = useRef(null);
+
   useEffect(() => {
     if (lastMessageRef.current) {
       lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -26,54 +27,53 @@ export default function ChatBody({ messages, users }) {
         const isSender = Boolean(message.isSender);
 
         return (
-          <>
-            <div
-              ref={index === sortedMessages.length - 1 ? lastMessageRef : null}
-            >
-              {showDate && <Style.Date>{messageDate}</Style.Date>}
+          <div
+            key={message.timestamp || index} // 고유한 key prop 추가
+            ref={index === sortedMessages.length - 1 ? lastMessageRef : null}
+          >
+            {showDate && <Style.Date>{messageDate}</Style.Date>}
 
-              <Style.OutWrapper isSender={isSender}>
-                <Style.ProfileImg
-                  src={`/${sender?.profilePicture}`}
-                  alt={sender?.userName}
-                />
+            <Style.OutWrapper isSender={isSender}>
+              <Style.ProfileImg
+                src={`/${sender?.profilePicture}`}
+                alt={sender?.userName}
+              />
 
-                <Style.InnerWrapper isSender={isSender}>
-                  <span
-                    style={{
-                      fontSize: '14px',
-                      color: '#979797',
-                      marginBottom: '5px',
-                    }}
-                  >
-                    {sender?.userId}
-                  </span>
+              <Style.InnerWrapper isSender={isSender}>
+                <span
+                  style={{
+                    fontSize: '14px',
+                    color: '#979797',
+                    marginBottom: '5px',
+                  }}
+                >
+                  {sender?.userId}
+                </span>
 
-                  <div style={{ display: 'flex' }}>
-                    {isSender && (
-                      <Style.DateBox isSender={isSender}>
-                        {new Date(message.timestamp).toLocaleTimeString([], {
-                          hour: '2-digit',
-                          minute: '2-digit',
-                        })}
-                      </Style.DateBox>
-                    )}
-                    <Style.TextBox isSender={isSender}>
-                      {message.content}
-                    </Style.TextBox>
-                    {!isSender && (
-                      <Style.DateBox isSender={isSender}>
-                        {new Date(message.timestamp).toLocaleTimeString([], {
-                          hour: '2-digit',
-                          minute: '2-digit',
-                        })}
-                      </Style.DateBox>
-                    )}
-                  </div>
-                </Style.InnerWrapper>
-              </Style.OutWrapper>
-            </div>
-          </>
+                <div style={{ display: 'flex' }}>
+                  {isSender && (
+                    <Style.DateBox isSender={isSender}>
+                      {new Date(message.timestamp).toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
+                    </Style.DateBox>
+                  )}
+                  <Style.TextBox isSender={isSender}>
+                    {message.content}
+                  </Style.TextBox>
+                  {!isSender && (
+                    <Style.DateBox isSender={isSender}>
+                      {new Date(message.timestamp).toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
+                    </Style.DateBox>
+                  )}
+                </div>
+              </Style.InnerWrapper>
+            </Style.OutWrapper>
+          </div>
         );
       })}
     </>
