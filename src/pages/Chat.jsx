@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useMemo } from 'react';
 import styled from '@emotion/styled';
 import ChatHeader from '../components/Chat/ChatHeader';
 import ChatBody from '../components/Chat/ChatBody';
@@ -11,7 +11,12 @@ export default function Chat() {
   const [messages, setMessages] = useState(messagesData.messages);
   const [users, setUsers] = useState(usersData.users);
 
-  const chatBodyRef = useRef(null);
+  const receiverId = useMemo(
+    () => messages.find((message) => !message.isSender)?.userId,
+    [messages]
+  ); // 메시지 변경될 때만 수신자 업데이트
+
+  const receiver = users[receiverId];
 
   const handleSendMessage = async (content) => {
     const newMessage = {
@@ -24,16 +29,13 @@ export default function Chat() {
     setMessages((prev) => [...prev, newMessage]);
   };
 
-  const receiverId = messages.find((message) => !message.isSender)?.userId;
-  const receiver = users[receiverId];
-
   return (
     <Style.Wrapper>
       <Style.Header>
         <ChatHeader receiver={receiver} />
       </Style.Header>
       <Style.BodyWrapper>
-        <Style.Body ref={chatBodyRef}>
+        <Style.Body>
           <ChatBody messages={messages} users={users} />
         </Style.Body>
       </Style.BodyWrapper>
