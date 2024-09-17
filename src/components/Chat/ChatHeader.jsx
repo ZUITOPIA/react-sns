@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Text } from '../styles/UI';
+import { Text } from '../styles/UI.ts';
 
 export default function ChatHeader({ receiver }) {
   return (
