@@ -1,12 +1,16 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import useInput from '../hooks/useInput';
 import { Img } from '../styles/UI';
 
-export default function ChatInput({ onSendMessage }) {
-  const [inputValue, handleChange, setInputValue] = useInput('');
+interface Props {
+  onSendMessage: (message: string) => void;
+}
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
+export default function ChatInput({ onSendMessage }: Props) {
+  const [inputValue, handleChange, setInputValue] = useInput<string>('');
+
+  const sendMessage = () => {
     if (inputValue.trim() !== '') {
       onSendMessage(inputValue);
       setInputValue('');
@@ -15,8 +19,17 @@ export default function ChatInput({ onSendMessage }) {
     }
   };
 
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    sendMessage();
+  };
+
+  const handleClick = () => {
+    sendMessage();
+  };
+
   return (
-    <Style.Wapper>
+    <Style.Wrapper>
       <Style.SearchLogoWrapper>
         <Img.RoundIcon
           width="18px"
@@ -34,7 +47,7 @@ export default function ChatInput({ onSendMessage }) {
           autoFocus
         />
       </form>
-      <Style.SendMessageLogoWrapper onClick={handleFormSubmit}>
+      <Style.SendMessageLogoWrapper onClick={handleClick}>
         <Img.RoundIcon
           width="22px"
           pointer
@@ -42,12 +55,12 @@ export default function ChatInput({ onSendMessage }) {
           alt="send"
         />
       </Style.SendMessageLogoWrapper>
-    </Style.Wapper>
+    </Style.Wrapper>
   );
 }
 
 const Style = {
-  Wapper: styled.div`
+  Wrapper: styled.div`
     width: 388px;
     position: fixed;
     border-radius: 24px;
@@ -70,12 +83,6 @@ const Style = {
     justify-content: center;
     align-items: center;
   `,
-
-  // SearchLogo: styled.img`
-  //   width: 18px;
-  //   height: 18px;
-  //   cursor: pointer;
-  // `,
   TextAreaWrapper: styled.input`
     width: 276px;
     height: 18px;
@@ -86,12 +93,6 @@ const Style = {
     border: none;
     background: none;
     outline: none;
-  `,
-  SendMessageLogo: styled.img`
-    width: 22px;
-    height: 22px;
-    filter: invert();
-    cursor: pointer;
   `,
   SendMessageLogoWrapper: styled.div`
     width: 80px;
