@@ -1,10 +1,27 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Message from './Message';
 import MessageDate from './MessageDate';
 
-export default function ChatBody({ messages, users }) {
-  let lastDate = null;
-  const lastMessageRef = useRef(null);
+type MessageType = {
+  isSender: boolean;
+  userId: string;
+  content: string;
+  timestamp: string;
+};
+
+type UserType = {
+  userId: string;
+  userName: string;
+};
+
+type ChatBodyProps = {
+  messages: MessageType[];
+  users: { [key: string]: UserType };
+};
+
+export default function ChatBody({ messages, users }: ChatBodyProps) {
+  let lastDate: string | '' = '';
+  const lastMessageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (lastMessageRef.current) {

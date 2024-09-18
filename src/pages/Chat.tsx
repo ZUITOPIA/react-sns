@@ -1,30 +1,43 @@
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import styled from '@emotion/styled';
 import ChatHeader from '../components/Chat/ChatHeader';
-import ChatBody from '../components/Chat/ChatBody';
 import ChatInput from '../components/Chat/ChatInput';
 
 import messagesData from '../data/messages.json';
 import usersData from '../data/users.json';
+import ChatBody from '../components/Chat/ChatBody';
+
+type Message = {
+  isSender: boolean;
+  userId: string;
+  content: string;
+  timestamp: string;
+};
+
+type User = {
+  userId: string;
+  userName: string;
+};
 
 export default function Chat() {
-  const [messages, setMessages] = useState(messagesData.messages);
-  const [users, setUsers] = useState(usersData.users);
+  const [messages, setMessages] = useState<Message[]>(messagesData.messages);
+  const [users, setUsers] = useState<{ [key: string]: User }>(usersData.users);
 
   const sortedMessages = useMemo(
     () =>
       [...messages].sort(
-        (a, b) => new Date(a.timestamp) - new Date(b.timestamp)
+        (a, b) =>
+          new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
       ),
     [messages]
   ); // 메세지 데이터 받아오면서 바로 정렬할 수 있도록 위치 변경
 
-  const receiverId = useMemo(
+  const receiverId = useMemo<string | undefined>(
     () => sortedMessages.find((message) => !message.isSender)?.userId,
     [sortedMessages]
   ); // 메시지 변경될 때만 수신자 업데이트
 
-  const receiver = users[receiverId];
+  const receiver = receiverId ? users[receiverId] : undefined;
 
   const handleSendMessage = async (content) => {
     const newMessage = {
