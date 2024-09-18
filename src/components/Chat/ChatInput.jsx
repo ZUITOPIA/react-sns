@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import useInput from '../hooks/useInput';
+import { Img } from '../styles/UI';
 
 export default function ChatInput({ onSendMessage }) {
   const [inputValue, handleChange, setInputValue] = useInput('');
@@ -17,7 +18,12 @@ export default function ChatInput({ onSendMessage }) {
   return (
     <Style.Wapper>
       <Style.SearchLogoWrapper>
-        <Style.SearchLogo src="/images/search.png" alt="search" />
+        <Img.RoundIcon
+          width="18px"
+          pointer
+          src="/images/search.svg"
+          alt="search"
+        />
       </Style.SearchLogoWrapper>
       <form onSubmit={handleFormSubmit}>
         <Style.TextAreaWrapper
@@ -29,7 +35,12 @@ export default function ChatInput({ onSendMessage }) {
         />
       </form>
       <Style.SendMessageLogoWrapper onClick={handleFormSubmit}>
-        <Style.SendMessageLogo src="/images/plane.png" alt="send" />
+        <Img.RoundIcon
+          width="22px"
+          pointer
+          src="/images/plane.svg"
+          alt="send"
+        />
       </Style.SendMessageLogoWrapper>
     </Style.Wapper>
   );
@@ -60,11 +71,11 @@ const Style = {
     align-items: center;
   `,
 
-  SearchLogo: styled.img`
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-  `,
+  // SearchLogo: styled.img`
+  //   width: 18px;
+  //   height: 18px;
+  //   cursor: pointer;
+  // `,
   TextAreaWrapper: styled.input`
     width: 276px;
     height: 18px;
