@@ -2,6 +2,7 @@ import { Theme } from '@emotion/react';
 import styled from '@emotion/styled';
 import theme from './theme';
 
+// 재사용 될 텍스트
 type StyleText = {
   color?: keyof Theme['color'];
   size?: keyof Theme['fontSize'];
@@ -10,7 +11,7 @@ type StyleText = {
 };
 
 export const Text = {
-  Title: styled.div<StyleText>`
+  Title: styled.span<StyleText>`
     display: inline-block;
     font-weight: ${({ weight }) =>
       weight ? theme.fontWeight[weight] : theme.fontWeight.medium};
@@ -19,7 +20,7 @@ export const Text = {
     color: ${({ color }) => (color ? theme.color[color] : theme.color.black)};
     cursor: ${(props) => props.pointer && 'pointer'};
   `,
-  MiniTitle: styled.div<StyleText>`
+  MiniTitle: styled.span<StyleText>`
     display: inline-block;
     font-weight: ${({ weight }) =>
       weight ? theme.fontWeight[weight] : theme.fontWeight.bold};
@@ -28,7 +29,7 @@ export const Text = {
     color: ${({ color }) => (color ? theme.color[color] : theme.color.black)};
     cursor: ${(props) => props.pointer && 'pointer'};
   `,
-  Body1: styled.div<StyleText>`
+  Body1: styled.span<StyleText>`
     display: inline-block;
     font-weight: ${({ weight }) =>
       weight ? theme.fontWeight[weight] : theme.fontWeight.normal};
@@ -38,7 +39,7 @@ export const Text = {
       color ? theme.color[color] : theme.color.grayDeep};
     cursor: ${(props) => props.pointer && 'pointer'};
   `,
-  Body2: styled.div<StyleText>`
+  Body2: styled.span<StyleText>`
     display: inline-block;
     font-weight: ${({ weight }) =>
       weight ? theme.fontWeight[weight] : theme.fontWeight.normal};
@@ -51,34 +52,89 @@ export const Text = {
   `,
 };
 
-export const Button = {
-  CheckedBox: styled.div`
-    width: 18px;
-    height: 18px;
-    background-image: url('/check.png');
-    background-size: contain;
-    border-radius: 20px;
-    opacity: 0.5;
-    filter: invert();
-    cursor: pointer;
-    margin-right: 14px;
+// 재사용 될 블록
+type StyleBlock = {
+  width?: string;
+  height?: string;
+  margin?: string;
+  padding?: string;
+  display?: string;
+  direction?: string;
+  justifyContent?: string;
+  alignItems?: string;
+  border?: string;
+  borderRadius?: string;
+  color?: keyof Theme['color'] | string;
+  bgColor?: keyof Theme['color'] | string;
+  bgImg?: string;
+  bgSize?: string;
+  gap?: string;
+  position?: string;
+  top?: string;
+  right?: string;
+  bottom?: string;
+  left?: string;
+  relative?: boolean;
+  zIndex?: string;
+  pointer?: boolean;
+};
+
+export const Block = {
+  AbsoluteBox: styled.div<StyleBlock>`
+    position: absolute;
+    top: ${(props) => props.top};
+    right: ${(props) => props.right};
+    bottom: ${(props) => props.bottom};
+    left: ${(props) => props.left};
+    z-index: ${(props) => props.zIndex};
+    width: ${(props) => (props.width ? props.width : '100%')};
+    height: ${(props) => (props.width ? props.height : 'auto')};
+    margin: ${(props) => props.margin};
+    padding: ${(props) => props.padding};
+    border: ${(props) => props.border};
+    border-radius: ${(props) => props.borderRadius};
+    background-color: ${(props) => props.bgColor};
+    cursor: ${(props) => props.pointer && 'pointer'};
   `,
-  UnCheckedBox: styled.div`
-    width: 20px;
-    height: 20px;
-    border: 2px solid lightgray;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-right: 14px;
+  FlexBox: styled.div<StyleBlock>`
+    display: flex;
+    flex-direction: ${(props) => props.direction};
+    justify-content: ${(props) => props.justifyContent};
+    align-items: ${(props) => props.alignItems};
+    width: ${(props) => (props.width ? props.width : '100%')};
+    height: ${(props) => (props.width ? props.height : 'auto')};
+    margin: ${(props) => props.margin};
+    padding: ${(props) => props.padding};
+    border: ${(props) => props.border};
+    border-radius: ${(props) => props.borderRadius};
+    background-color: ${(props) => props.bgColor};
+    cursor: ${(props) => props.pointer && 'pointer'};
   `,
-  DeleteBtn: styled.div`
-    width: 14px;
-    height: 14px;
-    background-image: url('/delete.png');
-    background-size: contain;
-    cursor: pointer;
-    margin: 20px;
-    opacity: 0.5;
-    filter: invert();
+};
+
+// 재사용 될 이미지
+type StyleImg = {
+  width?: string;
+  height?: string;
+  border?: string;
+  borderRadius?: string;
+  pointer?: boolean;
+};
+
+export const Img = {
+  RoundIcon: styled.img<StyleImg>`
+    display: block;
+    width: ${(props) => (props.width ? props.width : '100%')};
+    height: ${(props) => (props.width ? props.height : 'auto')};
+    border: ${(props) => props.border};
+    border-radius: 100%;
+    cursor: ${(props) => props.pointer && 'pointer'};
+  `,
+  AngledIcon: styled.img<StyleImg>`
+    display: block;
+    width: ${(props) => (props.width ? props.width : '100%')};
+    height: ${(props) => (props.width ? props.height : 'auto')};
+    border: ${(props) => props.border};
+    cursor: ${(props) => props.pointer && 'pointer'};
   `,
 };
