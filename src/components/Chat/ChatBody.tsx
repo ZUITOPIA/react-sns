@@ -14,12 +14,12 @@ type UserType = {
   userName: string;
 };
 
-interface ChatBodyProps {
+interface Props {
   messages: MessageType[];
   users: { [key: string]: UserType };
 }
 
-export default function ChatBody({ messages, users }: ChatBodyProps) {
+export default function ChatBody({ messages, users }: Props) {
   let lastDate: string | '' = '';
   const lastMessageRef = useRef<HTMLDivElement | null>(null);
 

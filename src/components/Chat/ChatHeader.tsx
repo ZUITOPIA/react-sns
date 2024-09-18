@@ -7,11 +7,11 @@ type ReceiverType = {
   userName: string;
 };
 
-interface ChatHeaderProps {
+interface Props {
   receiver?: ReceiverType;
 }
 
-export default function ChatHeader({ receiver }: ChatHeaderProps) {
+export default function ChatHeader({ receiver }: Props) {
   return (
     <>
       <Style.Wrapper>
