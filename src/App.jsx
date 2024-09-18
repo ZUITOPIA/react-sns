@@ -3,7 +3,7 @@
 import Chat from './pages/Chat';
 import theme from './components/styles/theme';
 import { Global, ThemeProvider } from '@emotion/react';
-import { GlobalStyles } from './components/styles/GlobalStyles';
+import { GlobalStyles } from './components/styles/GlobalStyles.ts';
 
 export default function App() {
   return (
