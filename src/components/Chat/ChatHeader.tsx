@@ -1,14 +1,28 @@
+import React from 'react';
 import styled from '@emotion/styled';
-import { Text } from '../styles/UI';
+import { Text, Img } from '../styles/UI.ts';
 
-export default function ChatHeader({ receiver }) {
+type ReceiverType = {
+  userId: string;
+  userName: string;
+};
+
+interface Props {
+  receiver?: ReceiverType;
+}
+
+export default function ChatHeader({ receiver }: Props) {
   return (
     <>
       <Style.Wrapper>
         <Style.LeftWrapper>
-          <Style.Icon src="/images/left-arrow.png" alt="arrow" />
+          <Img.AngledIcon
+            width="22px"
+            src="/images/left-arrow.svg"
+            alt="arrow"
+          />
 
-          <Style.ReceiverProfile src="/images/dlwlrma.jpg" alt="profile" />
+          <Img.RoundIcon width="36px" src="/images/dlwlrma.jpg" alt="profile" />
 
           <Style.UserInfo>
             <Text.MiniTitle>{receiver?.userName}</Text.MiniTitle>
@@ -16,8 +30,18 @@ export default function ChatHeader({ receiver }) {
           </Style.UserInfo>
         </Style.LeftWrapper>
         <Style.RightWrapper>
-          <Style.Icon src="/images/alarm.png" alt="profile" />
-          <Style.IconVideo src="/images/video.png" alt="profile" />
+          <Img.AngledIcon
+            width="26px"
+            pointer
+            src="/images/alarm.svg"
+            alt="profile"
+          />
+          <Img.AngledIcon
+            width="28px"
+            pointer
+            src="/images/video.svg"
+            alt="profile"
+          />
         </Style.RightWrapper>
       </Style.Wrapper>
     </>
@@ -45,22 +69,6 @@ const Style = {
     justify-content: space-between;
     align-items: center;
     padding-right: 20px;
-  `,
-  ReceiverProfile: styled.img`
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 1px solid #dbdbdb;
-  `,
-  Icon: styled.img`
-    width: 22px;
-    height: 22px;
-    cursor: pointer;
-  `,
-  IconVideo: styled.img`
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
   `,
   UserInfo: styled.div`
     height: 100%;

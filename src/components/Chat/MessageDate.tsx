@@ -1,8 +1,13 @@
+import React from 'react';
 import styled from '@emotion/styled';
 
-const MessageDate = ({ date }) => {
+interface MessageDateProps {
+  date: string;
+}
+
+export default function MessageDate({ date }: MessageDateProps) {
   return <Style.Date>{date}</Style.Date>;
-};
+}
 
 const Style = {
   Date: styled.div`
@@ -12,5 +17,3 @@ const Style = {
     color: #888;
   `,
 };
-
-export default MessageDate;

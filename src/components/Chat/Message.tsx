@@ -1,8 +1,27 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import { format } from 'date-fns';
-import { Text } from '../styles/UI';
+import { Text } from '../styles/UI.ts';
 
-const Message = ({ message, sender, isSender }) => {
+type UserType = {
+  userId: string;
+  userName: string;
+  profilePicture?: string;
+};
+type MessageType = {
+  isSender: boolean;
+  userId: string;
+  content: string;
+  timestamp: string;
+};
+
+interface Props {
+  message: MessageType;
+  sender: UserType;
+  isSender: boolean;
+}
+
+export default function Message({ message, sender, isSender }: Props) {
   return (
     <Style.OutWrapper isSender={isSender}>
       <Style.ProfileImg
@@ -15,13 +34,13 @@ const Message = ({ message, sender, isSender }) => {
 
         <div style={{ display: 'flex' }}>
           {isSender && (
-            <Style.DateBox isSender={isSender}>
+            <Style.DateBox>
               {format(new Date(message.timestamp), 'hh:mm a')}
             </Style.DateBox>
           )}
           <Style.TextBox isSender={isSender}>{message.content}</Style.TextBox>
           {!isSender && (
-            <Style.DateBox isSender={isSender}>
+            <Style.DateBox>
               {format(new Date(message.timestamp), 'hh:mm a')}
             </Style.DateBox>
           )}
@@ -29,22 +48,22 @@ const Message = ({ message, sender, isSender }) => {
       </Style.InnerWrapper>
     </Style.OutWrapper>
   );
-};
+}
 
 const Style = {
-  OutWrapper: styled.div`
+  OutWrapper: styled.div<{ isSender: boolean }>`
     display: flex;
     flex-direction: ${(props) => (props.isSender ? 'row-reverse' : 'row')};
     margin: 0 0 20px 0;
   `,
-  InnerWrapper: styled.div`
+  InnerWrapper: styled.div<{ isSender: boolean }>`
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: ${(props) => (props.isSender ? 'flex-end' : 'flex-start')};
     margin: ${(props) => (props.isSender ? '0 10px 0 0' : '0 0 0 10px')};
   `,
-  TextBox: styled.div`
+  TextBox: styled.div<{ isSender: boolean }>`
     max-width: 70%;
     padding: 10px 13px;
     margin: 2px 0 2px 0;
@@ -69,5 +88,3 @@ const Style = {
     border-radius: 50%;
   `,
 };
-
-export default Message;
