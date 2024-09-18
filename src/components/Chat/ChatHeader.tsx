@@ -21,9 +21,7 @@ export default function ChatHeader({ receiver }: Props) {
             src="/images/left-arrow.svg"
             alt="arrow"
           />
-
           <Img.RoundIcon width="36px" src="/images/dlwlrma.jpg" alt="profile" />
-
           <Style.UserInfo>
             <Text.MiniTitle>{receiver?.userName}</Text.MiniTitle>
             <Text.Body1>{receiver?.userId}</Text.Body1>
