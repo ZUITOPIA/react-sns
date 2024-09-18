@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
-import Chat from './pages/Chat';
-import theme from './components/styles/theme';
+import Chat from './pages/Chat.jsx';
+import theme from './components/styles/theme.ts';
 import { Global, ThemeProvider } from '@emotion/react';
 import { GlobalStyles } from './components/styles/GlobalStyles.ts';
 
