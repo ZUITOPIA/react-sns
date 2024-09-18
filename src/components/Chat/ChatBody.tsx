@@ -14,10 +14,10 @@ type UserType = {
   userName: string;
 };
 
-type ChatBodyProps = {
+interface ChatBodyProps {
   messages: MessageType[];
   users: { [key: string]: UserType };
-};
+}
 
 export default function ChatBody({ messages, users }: ChatBodyProps) {
   let lastDate: string | '' = '';

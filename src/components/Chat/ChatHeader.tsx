@@ -1,7 +1,17 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import { Text, Img } from '../styles/UI.ts';
 
-export default function ChatHeader({ receiver }) {
+type ReceiverType = {
+  userId: string;
+  userName: string;
+};
+
+interface ChatHeaderProps {
+  receiver?: ReceiverType;
+}
+
+export default function ChatHeader({ receiver }: ChatHeaderProps) {
   return (
     <>
       <Style.Wrapper>
