@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Text, Img } from '../styles/UI';
+import { useNavigate } from 'react-router-dom';
 
 type ReceiverType = {
   userId: string;
@@ -12,6 +13,11 @@ interface Props {
 }
 
 export default function ChatHeader({ receiver }: Props) {
+  const navigate = useNavigate();
+  const handleBackButtonClick = () => {
+    navigate('/chats');
+  };
+
   return (
     <>
       <Style.Wrapper>
@@ -20,6 +26,8 @@ export default function ChatHeader({ receiver }: Props) {
             width="22px"
             src="/images/left-arrow.svg"
             alt="arrow"
+            pointer
+            onClick={handleBackButtonClick}
           />
           <Img.RoundIcon width="36px" src="/images/dlwlrma.jpg" alt="profile" />
           <Style.UserInfo>

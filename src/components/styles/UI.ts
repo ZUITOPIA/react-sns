@@ -20,6 +20,15 @@ export const Text = {
     color: ${({ color }) => (color ? theme.color[color] : theme.color.black)};
     cursor: ${(props) => props.pointer && 'pointer'};
   `,
+  MiddleTitle: styled.span<StyleText>`
+    display: inline-block;
+    font-weight: ${({ weight }) =>
+      weight ? theme.fontWeight[weight] : theme.fontWeight.bold};
+    font-size: ${({ size }) =>
+      size ? theme.fontSize[size] : theme.fontSize.middleTitle};
+    color: ${({ color }) => (color ? theme.color[color] : theme.color.black)};
+    cursor: ${(props) => props.pointer && 'pointer'};
+  `,
   MiniTitle: styled.span<StyleText>`
     display: inline-block;
     font-weight: ${({ weight }) =>
