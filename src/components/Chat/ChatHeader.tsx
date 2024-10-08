@@ -18,7 +18,6 @@ export default function ChatHeader({ receiver }: Props) {
   const handleBackButtonClick = () => {
     navigate('/chats');
   };
-  console.log(receiver?.profilePicture);
 
   return (
     <>
