@@ -3,7 +3,7 @@ import { Img, Text } from '../components/styles/UI';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import Footer from '../components/Layout/Footer';
-import ChatList from '../components/Chats/ChatList';
+import ChatList from '../components/Chat/ChatList';
 
 export default function Chats() {
   return (
