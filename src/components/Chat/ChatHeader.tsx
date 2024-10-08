@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Text, Img } from '../styles/UI';
+import { useNavigate } from 'react-router-dom';
 
 type ReceiverType = {
   userId: string;
   userName: string;
+  profilePicture: string;
 };
 
 interface Props {
@@ -12,16 +14,28 @@ interface Props {
 }
 
 export default function ChatHeader({ receiver }: Props) {
+  const navigate = useNavigate();
+  const handleBackButtonClick = () => {
+    navigate('/chats');
+  };
+
   return (
     <>
       <Style.Wrapper>
         <Style.LeftWrapper>
           <Img.AngledIcon
-            width="22px"
+            width="28px"
             src="/images/left-arrow.svg"
             alt="arrow"
+            pointer
+            onClick={handleBackButtonClick}
           />
-          <Img.RoundIcon width="36px" src="/images/dlwlrma.jpg" alt="profile" />
+          <Img.RoundIcon
+            width="36px"
+            height="36px"
+            src={receiver?.profilePicture}
+            alt="profile"
+          />
           <Style.UserInfo>
             <Text.MiniTitle>{receiver?.userName}</Text.MiniTitle>
             <Text.Body1>{receiver?.userId}</Text.Body1>

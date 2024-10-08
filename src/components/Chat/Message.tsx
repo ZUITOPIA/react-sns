@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { format } from 'date-fns';
-import { Text } from '../styles/UI';
+import { Img, Text } from '../styles/UI';
 
 type UserType = {
   userId: string;
   userName: string;
   profilePicture?: string;
 };
+
 type MessageType = {
   isSender: boolean;
   userId: string;
@@ -21,70 +22,71 @@ interface Props {
   isSender: boolean;
 }
 
-export default function Message({ message, sender, isSender }: Props) {
+const OWNER_USER_ID = 'hijh_0522';
+
+export default function Message({ message, sender }: Props) {
+  const isOwner = sender.userId === OWNER_USER_ID;
+
   return (
-    <Style.OutWrapper isSender={isSender}>
-      <Style.ProfileImg
-        src={`/${sender?.profilePicture}`}
+    <Style.Wrapper isOwner={isOwner}>
+      <Img.RoundIcon
+        width="36px"
+        height="32px"
+        src={`${sender?.profilePicture}`}
         alt={sender?.userName}
       />
-
-      <Style.InnerWrapper isSender={isSender}>
+      <Style.InnerWrapper isOwner={isOwner}>
         <Text.Body2>{sender?.userId}</Text.Body2>
+        <Style.MessageContainer>
+          {isOwner && (
+            <Style.DateBox>
+              {format(new Date(message.timestamp), 'hh:mm a')}
+            </Style.DateBox>
+          )}
+          <Style.TextBox isOwner={isOwner}>{message.content}</Style.TextBox>
 
-        <div style={{ display: 'flex' }}>
-          {isSender && (
+          {!isOwner && (
             <Style.DateBox>
               {format(new Date(message.timestamp), 'hh:mm a')}
             </Style.DateBox>
           )}
-          <Style.TextBox isSender={isSender}>{message.content}</Style.TextBox>
-          {!isSender && (
-            <Style.DateBox>
-              {format(new Date(message.timestamp), 'hh:mm a')}
-            </Style.DateBox>
-          )}
-        </div>
+        </Style.MessageContainer>
       </Style.InnerWrapper>
-    </Style.OutWrapper>
+    </Style.Wrapper>
   );
 }
 
 const Style = {
-  OutWrapper: styled.div<{ isSender: boolean }>`
+  Wrapper: styled.div<{ isOwner: boolean }>`
     display: flex;
-    flex-direction: ${(props) => (props.isSender ? 'row-reverse' : 'row')};
+    flex-direction: ${(props) => (props.isOwner ? 'row-reverse' : 'row')};
     margin: 0 0 20px 0;
   `,
-  InnerWrapper: styled.div<{ isSender: boolean }>`
+  InnerWrapper: styled.div<{ isOwner: boolean }>`
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: ${(props) => (props.isSender ? 'flex-end' : 'flex-start')};
-    margin: ${(props) => (props.isSender ? '0 10px 0 0' : '0 0 0 10px')};
+    align-items: ${(props) => (props.isOwner ? 'flex-end' : 'flex-start')};
+    margin: ${(props) => (props.isOwner ? '0 10px 0 0' : '0 0 0 10px')};
   `,
-  TextBox: styled.div<{ isSender: boolean }>`
-    max-width: 70%;
+  MessageContainer: styled.div`
+    display: flex;
+  `,
+  TextBox: styled.div<{ isOwner: boolean }>`
     padding: 10px 13px;
-    margin: 2px 0 2px 0;
+    margin: 2px 0;
+    max-width: 240px;
     border-radius: ${(props) =>
-      props.isSender ? '20px 4px 20px 24px' : '4px 20px 20px 24px'};
-    background-color: ${(props) => (props.isSender ? '#6245ff' : '#e9e9e9')};
-    color: ${(props) => (props.isSender ? '#fff' : '#1a1a1a')};
-    white-space: pre-wrap;
-    word-break: break-word;
+      props.isOwner ? '20px 4px 20px 24px' : '4px 20px 20px 24px'};
+    background-color: ${(props) => (props.isOwner ? '#6245ff' : '#e9e9e9')};
+    color: ${(props) => (props.isOwner ? '#fff' : '#1a1a1a')};
   `,
   DateBox: styled.div`
-    height: 65%;
-    display: flex;
-    align-items: end;
+    height: 100%;
     font-size: 10px;
     color: #888;
-    margin: 10px;
-  `,
-  ProfileImg: styled.img`
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+    margin-left: 10px;
+    display: flex;
+    align-items: flex-end;
   `,
 };
