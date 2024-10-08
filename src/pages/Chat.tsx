@@ -6,6 +6,7 @@ import ChatInput from '../components/Chat/ChatInput';
 import messagesData from '../data/messages.json';
 import usersData from '../data/users.json';
 import ChatBody from '../components/Chat/ChatBody';
+import { useParams } from 'react-router-dom';
 
 type Message = {
   isSender: boolean;
@@ -17,10 +18,19 @@ type Message = {
 type User = {
   userId: string;
   userName: string;
+  profilePicture: string;
 };
 
 export default function Chat() {
-  const [messages, setMessages] = useState<Message[]>(messagesData.messages);
+  const { roomId } = useParams();
+  const currentRoom = messagesData.chatRooms.find(
+    (room) => room.roomId.toString() === roomId
+  );
+
+  console.log(roomId);
+  const [messages, setMessages] = useState<Message[]>(
+    currentRoom?.messages || []
+  );
   const [users, setUsers] = useState<{ [key: string]: User }>(usersData.users);
 
   const sortedMessages = useMemo(
@@ -57,7 +67,7 @@ export default function Chat() {
       </Style.Header>
       <Style.BodyWrapper>
         <Style.Body>
-          <ChatBody messages={messages} users={users} />
+          <ChatBody messages={sortedMessages} users={users} />
         </Style.Body>
       </Style.BodyWrapper>
       <ChatInput onSendMessage={handleSendMessage} />

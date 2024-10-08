@@ -3,6 +3,7 @@ import { Block, Img, Input, Text } from '../components/styles/UI';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import Footer from '../components/Layout/Footer';
+import ChatList from '../components/Chats/ChatList';
 
 export default function Chats() {
   return (
@@ -18,11 +19,7 @@ export default function Chats() {
       </Style.Header>
 
       <Style.BodyWrapper>
-        <Style.SearchBoxWrapper>
-          <Img.RoundIcon width="18px" src="/images/search.svg" alt="search" />
-          <Input.SearchInput placeholder="이름 검색" />
-        </Style.SearchBoxWrapper>
-        목록 들어갈 위치
+        <ChatList />
       </Style.BodyWrapper>
       <Style.Footer>
         <Footer />

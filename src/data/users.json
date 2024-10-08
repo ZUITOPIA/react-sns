@@ -3,12 +3,22 @@
     "dlwlrma": {
       "userId": "dlwlrma",
       "userName": "이지금",
-      "profilePicture": "images/dlwlrma.jpg"
+      "profilePicture": "/images/dlwlrma.jpg"
     },
     "hijh_0522": {
       "userId": "hijh_0522",
       "userName": "고주희",
-      "profilePicture": "images/zuitopia.jpeg"
+      "profilePicture": "/images/zuitopia.jpeg"
+    },
+    "eunwo.o_c": {
+      "userId": "eunwo.o_c",
+      "userName": "차은우",
+      "profilePicture": "/images/eunwoo.jpeg"
+    },
+    "katarinabluu": {
+      "userId": "katarinabluu",
+      "userName": "KARINA",
+      "profilePicture": "/images/katarinabluu.jpg"
     }
   }
 }

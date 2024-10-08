@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 type ReceiverType = {
   userId: string;
   userName: string;
+  profilePicture: string;
 };
 
 interface Props {
@@ -17,6 +18,7 @@ export default function ChatHeader({ receiver }: Props) {
   const handleBackButtonClick = () => {
     navigate('/chats');
   };
+  console.log(receiver?.profilePicture);
 
   return (
     <>
@@ -29,7 +31,11 @@ export default function ChatHeader({ receiver }: Props) {
             pointer
             onClick={handleBackButtonClick}
           />
-          <Img.RoundIcon width="36px" src="/images/dlwlrma.jpg" alt="profile" />
+          <Img.RoundIcon
+            width="36px"
+            src={`${receiver?.profilePicture}`}
+            alt="profile"
+          />
           <Style.UserInfo>
             <Text.MiniTitle>{receiver?.userName}</Text.MiniTitle>
             <Text.Body1>{receiver?.userId}</Text.Body1>
