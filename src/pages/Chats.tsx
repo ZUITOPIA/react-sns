@@ -1,7 +1,8 @@
 import React from 'react';
-import { Img, Text } from '../components/styles/UI';
+import { Block, Img, Input, Text } from '../components/styles/UI';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
+import Footer from '../components/Layout/Footer';
 
 export default function Chats() {
   return (
@@ -16,7 +17,16 @@ export default function Chats() {
         <Text.MiddleTitle>ZUITOPIA</Text.MiddleTitle>
       </Style.Header>
 
-      <Style.BodyWrapper>목록 들어갈 위치</Style.BodyWrapper>
+      <Style.BodyWrapper>
+        <Style.SearchBoxWrapper>
+          <Img.RoundIcon width="18px" src="/images/search.svg" alt="search" />
+          <Input.SearchInput placeholder="이름 검색" />
+        </Style.SearchBoxWrapper>
+        목록 들어갈 위치
+      </Style.BodyWrapper>
+      <Style.Footer>
+        <Footer />
+      </Style.Footer>
     </Style.Wrapper>
   );
 }
@@ -47,8 +57,31 @@ const Style = {
     border-bottom: 1px solid #dbdbdb;
   `,
   BodyWrapper: styled.div`
-    width: 430px;
+    width: 428px;
     height: 100%;
-    margin-top: 80px;
+    margin-top: 82px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid red; */
+  `,
+  Footer: styled.div`
+    width: 430px;
+    height: 82px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    border-top: 1px solid #dbdbdb;
+  `,
+  SearchBoxWrapper: styled.div`
+    width: 378px;
+    height: 36px;
+    margin: 20px 12px 36px 12px;
+    padding-left: 10px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    display: flex;
   `,
 };

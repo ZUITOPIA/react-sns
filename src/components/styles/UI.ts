@@ -118,6 +118,7 @@ export const Block = {
     border-radius: ${(props) => props.borderRadius};
     background-color: ${(props) => props.bgColor};
     cursor: ${(props) => props.pointer && 'pointer'};
+    gap: ${(props) => props.gap};
   `,
 };
 
@@ -145,5 +146,25 @@ export const Img = {
     height: ${(props) => (props.width ? props.height : 'auto')};
     border: ${(props) => props.border};
     cursor: ${(props) => props.pointer && 'pointer'};
+  `,
+};
+
+// 재사용 될 이미지
+type StyleInput = {
+  width?: string;
+  height?: string;
+};
+
+export const Input = {
+  SearchInput: styled.input<StyleInput>`
+    display: block;
+    width: ${(props) => (props.width ? props.width : '100%')};
+    height: ${(props) => (props.width ? props.height : 'auto')};
+    border: 0;
+    cursor: ${(props) => props.pointer && 'pointer'};
+    outline: none;
+    padding-left: 10px;
+    background-color: #f0f0f0;
+    border-radius: 10px 10px;
   `,
 };
