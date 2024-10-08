@@ -30,7 +30,7 @@ export default function Message({ message, sender }: Props) {
   return (
     <Style.Wrapper isOwner={isOwner}>
       <Img.RoundIcon
-        width="32px"
+        width="36px"
         height="32px"
         src={`${sender?.profilePicture}`}
         alt={sender?.userName}

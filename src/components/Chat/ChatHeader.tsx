@@ -25,7 +25,7 @@ export default function ChatHeader({ receiver }: Props) {
       <Style.Wrapper>
         <Style.LeftWrapper>
           <Img.AngledIcon
-            width="22px"
+            width="28px"
             src="/images/left-arrow.svg"
             alt="arrow"
             pointer
@@ -33,7 +33,8 @@ export default function ChatHeader({ receiver }: Props) {
           />
           <Img.RoundIcon
             width="36px"
-            src={`${receiver?.profilePicture}`}
+            height="36px"
+            src={receiver?.profilePicture}
             alt="profile"
           />
           <Style.UserInfo>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Img, Input } from '../styles/UI';
+import messagesData from '../../data/messages.json';
 
 export default function ChatList() {
   return (
@@ -10,6 +11,9 @@ export default function ChatList() {
         <Input.SearchInput placeholder="이름 검색" />
       </Style.SearchBoxWrapper>
       목록 들어갈 위치
+      {messagesData.chatRooms.map((item) => {
+        console.log(item.roomId);
+      })}
     </>
   );
 }

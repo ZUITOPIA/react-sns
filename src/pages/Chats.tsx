@@ -1,5 +1,5 @@
 import React from 'react';
-import { Block, Img, Input, Text } from '../components/styles/UI';
+import { Img, Text } from '../components/styles/UI';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import Footer from '../components/Layout/Footer';
@@ -10,7 +10,7 @@ export default function Chats() {
     <Style.Wrapper>
       <Style.Header>
         <Img.AngledIcon
-          width="22px"
+          width="28px"
           src="/images/left-arrow.svg"
           alt="arrow"
           pointer
