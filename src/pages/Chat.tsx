@@ -27,7 +27,6 @@ export default function Chat() {
     (room) => room.roomId.toString() === roomId
   );
 
-  console.log(roomId);
   const [messages, setMessages] = useState<Message[]>(
     currentRoom?.messages || []
   );

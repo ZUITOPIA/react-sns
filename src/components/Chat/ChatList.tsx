@@ -28,7 +28,12 @@ export default function ChatList() {
           );
 
           return roomParticipants.map((user) => (
-            <ChatItem key={user.userId} user={user} lastMessage={lastMessage} />
+            <ChatItem
+              key={user.userId}
+              user={user}
+              lastMessage={lastMessage}
+              roomId={room.roomId}
+            />
           ));
         })}
       </Style.MessageListWrapper>
