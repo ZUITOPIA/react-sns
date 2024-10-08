@@ -3,9 +3,9 @@ import styled from '@emotion/styled';
 import { Img, Input } from '../styles/UI';
 import messagesData from '../../data/messages.json';
 import usersData from '../../data/users.json';
-import ChatItem from './ChatItem';
+import MessageItem from './MessageItem';
 
-export default function ChatList() {
+export default function MessageList() {
   const OWNER_USER_ID = 'hijh_0522';
 
   const filteredUsers = Object.values(usersData.users).filter(
@@ -28,7 +28,7 @@ export default function ChatList() {
           );
 
           return roomParticipants.map((user) => (
-            <ChatItem
+            <MessageItem
               key={user.userId}
               user={user}
               lastMessage={lastMessage}
@@ -54,6 +54,5 @@ const Style = {
   MessageListWrapper: styled.div`
     width: 90%;
     height: 84%;
-    padding-left: 40px;
   `,
 };

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import Message from './Message';
-import MessageDate from './MessageDate';
+import Message from '../Message/Message';
+import MessageDate from '../Message/MessageDate';
 
 type MessageType = {
   isSender: boolean;

@@ -3,7 +3,7 @@ import { Img, Text } from '../components/styles/UI';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import Footer from '../components/Layout/Footer';
-import ChatList from '../components/Chat/ChatList';
+import MessageList from '../components/Message/MessageList';
 
 export default function Chats() {
   return (
@@ -19,7 +19,7 @@ export default function Chats() {
       </Style.Header>
 
       <Style.BodyWrapper>
-        <ChatList />
+        <MessageList />
       </Style.BodyWrapper>
       <Style.Footer>
         <Footer />
@@ -60,7 +60,6 @@ const Style = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* border: 1px solid red; */
   `,
   Footer: styled.div`
     width: 430px;
