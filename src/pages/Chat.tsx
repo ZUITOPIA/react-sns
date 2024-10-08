@@ -1,12 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import styled from '@emotion/styled';
-import ChatHeader from '../components/Chat/ChatHeader';
-import ChatInput from '../components/Chat/ChatInput';
-
 import messagesData from '../data/messages.json';
 import usersData from '../data/users.json';
-import ChatBody from '../components/Chat/ChatBody';
 import { useParams } from 'react-router-dom';
+import ChatHeader from '../components/ChatRoom/ChatHeader';
+import ChatBody from '../components/ChatRoom/ChatBody';
+import ChatInput from '../components/ChatRoom/ChatInput';
 
 type Message = {
   isSender: boolean;
