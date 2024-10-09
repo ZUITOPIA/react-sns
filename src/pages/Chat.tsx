@@ -1,75 +1,50 @@
-import React, { useState, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
-import ChatHeader from '../components/Chat/ChatHeader';
-import ChatInput from '../components/Chat/ChatInput';
-
-import messagesData from '../data/messages.json';
-import usersData from '../data/users.json';
-import ChatBody from '../components/Chat/ChatBody';
 import { useParams } from 'react-router-dom';
-
-type Message = {
-  isSender: boolean;
-  userId: string;
-  content: string;
-  timestamp: string;
-};
-
-type User = {
-  userId: string;
-  userName: string;
-  profilePicture: string;
-};
+import ChatHeader from '../components/ChatRoom/ChatHeader';
+import ChatBody from '../components/ChatRoom/ChatBody';
+import ChatInput from '../components/ChatRoom/ChatInput';
+import { useRecoilState } from 'recoil';
+import { MessageState, UserState } from '../atoms';
+import { OWNER_USER_ID } from '../constants';
 
 export default function Chat() {
-  const { roomId } = useParams();
-  const currentRoom = messagesData.chatRooms.find(
-    (room) => room.roomId.toString() === roomId
+  const { roomId } = useParams<{ roomId: string }>();
+  const [messages, setMessage] = useRecoilState(MessageState);
+  const [users, setUser] = useRecoilState(UserState);
+
+  const filteredMessages = messages.filter(
+    (msg) => msg.roomId === Number(roomId)
   );
 
-  const [messages, setMessages] = useState<Message[]>(
-    currentRoom?.messages || []
-  );
-  const [users, setUsers] = useState<{ [key: string]: User }>(usersData.users);
-
-  const sortedMessages = useMemo(
-    () =>
-      [...messages].sort(
-        (a, b) =>
-          new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-      ),
-    [messages]
-  ); // 메세지 데이터 받아오면서 바로 정렬할 수 있도록 위치 변경
-
-  const receiverId = useMemo<string | undefined>(
-    () => sortedMessages.find((message) => !message.isSender)?.userId,
-    [sortedMessages]
-  ); // 메시지 변경될 때만 수신자 업데이트
-
-  const receiver = receiverId ? users[receiverId] : undefined;
-
-  const handleSendMessage = async (content) => {
-    const newMessage = {
-      userId: 'hijh_0522',
-      isSender: true,
-      content,
-      timestamp: new Date().toISOString(),
-    };
-
-    setMessages((prev) => [...prev, newMessage]);
+  const getParticipants = () => {
+    const participantIds = new Set(
+      filteredMessages.flatMap((msg) => msg.messages.map((m) => m.userId))
+    );
+    return users.filter((u) => participantIds.has(u.userId));
   };
+
+  const participants = getParticipants();
+
+  const owner = participants.find(
+    (participant) => participant.userId === OWNER_USER_ID
+  );
+
+  const otherParticipants = participants.find(
+    (participant) => participant.userId !== OWNER_USER_ID
+  );
 
   return (
     <Style.Wrapper>
       <Style.Header>
-        <ChatHeader receiver={receiver} />
+        <ChatHeader receiver={otherParticipants} />
       </Style.Header>
       <Style.BodyWrapper>
         <Style.Body>
-          <ChatBody messages={sortedMessages} users={users} />
+          <ChatBody filteredMessages={filteredMessages} />
         </Style.Body>
       </Style.BodyWrapper>
-      <ChatInput onSendMessage={handleSendMessage} />
+      <ChatInput />
     </Style.Wrapper>
   );
 }
@@ -96,7 +71,7 @@ const Style = {
   BodyWrapper: styled.div`
     width: 430px;
     height: 100%;
-    margin-top: 70px;
+    margin-top: 80px;
   `,
   Body: styled.div`
     padding: 22px;

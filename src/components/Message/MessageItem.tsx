@@ -2,7 +2,7 @@ import React from 'react';
 import { Block, Img, Text } from '../styles/UI';
 import { useNavigate } from 'react-router-dom';
 
-export default function ChatItem({ user, lastMessage, roomId }) {
+export default function MessageItem({ user, lastMessage, roomId }) {
   const navigate = useNavigate();
   const handleMessageClick = () => {
     navigate(`/chat/${roomId}`);

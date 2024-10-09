@@ -1,18 +1,38 @@
 import React from 'react';
+import { useRecoilState } from 'recoil';
+import { useParams } from 'react-router-dom';
 import styled from '@emotion/styled';
 import useInput from '../hooks/useInput';
 import { Img } from '../styles/UI';
+import { MessageState } from '../../atoms';
+import { OWNER_USER_ID } from '../../constants';
 
-interface Props {
-  onSendMessage: (message: string) => void;
-}
-
-export default function ChatInput({ onSendMessage }: Props) {
+export default function ChatInput() {
+  const { roomId } = useParams<{ roomId: string }>();
   const [inputValue, handleChange, setInputValue] = useInput<string>('');
+  const [messages, setMessages] = useRecoilState(MessageState);
 
   const sendMessage = () => {
     if (inputValue.trim() !== '') {
-      onSendMessage(inputValue);
+      const newMessage = {
+        isOwner: true,
+        userId: OWNER_USER_ID,
+        content: inputValue.trim(),
+        timestamp: new Date().toISOString(),
+      };
+
+      setMessages((prevMessages) =>
+        prevMessages.map((room) => {
+          if (room.roomId === Number(roomId)) {
+            return {
+              ...room,
+              messages: [...room.messages, newMessage],
+            };
+          }
+          return room;
+        })
+      );
+
       setInputValue('');
     } else {
       alert('입력된 메세지가 없습니다.');

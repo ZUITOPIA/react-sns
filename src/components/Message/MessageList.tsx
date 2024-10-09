@@ -1,16 +1,24 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Img, Input } from '../styles/UI';
-import messagesData from '../../data/messages.json';
-import usersData from '../../data/users.json';
-import ChatItem from './ChatItem';
+import MessageItem from './MessageItem';
+import { OWNER_USER_ID } from '../../constants';
+import { useRecoilState } from 'recoil';
+import { MessageState, UserState } from '../../atoms';
 
-export default function ChatList() {
-  const OWNER_USER_ID = 'hijh_0522';
+export default function MessageList() {
+  const [messages, setMessage] = useRecoilState(MessageState);
+  const [users, setUser] = useRecoilState(UserState);
 
-  const filteredUsers = Object.values(usersData.users).filter(
-    (user) => user.userId !== OWNER_USER_ID
-  );
+  const getRoomParticipants = (room) => {
+    return users.filter((participant) =>
+      room.messages.some(
+        (message) =>
+          message.userId === participant.userId &&
+          message.userId !== OWNER_USER_ID
+      )
+    );
+  };
 
   return (
     <>
@@ -20,15 +28,14 @@ export default function ChatList() {
       </Style.SearchBoxWrapper>
 
       <Style.MessageListWrapper>
-        {messagesData.chatRooms.map((room) => {
+        {messages.map((room) => {
           const lastMessage = room.messages[room.messages.length - 1];
 
-          const roomParticipants = filteredUsers.filter((user) =>
-            room.messages.some((message) => message.userId === user.userId)
-          );
+          const roomParticipants = getRoomParticipants(room);
+          console.log(roomParticipants);
 
           return roomParticipants.map((user) => (
-            <ChatItem
+            <MessageItem
               key={user.userId}
               user={user}
               lastMessage={lastMessage}
@@ -54,6 +61,5 @@ const Style = {
   MessageListWrapper: styled.div`
     width: 90%;
     height: 84%;
-    padding-left: 40px;
   `,
 };

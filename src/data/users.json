@@ -1,24 +1,26 @@
-{
-  "users": {
-    "dlwlrma": {
-      "userId": "dlwlrma",
-      "userName": "이지금",
-      "profilePicture": "/images/dlwlrma.jpg"
-    },
-    "hijh_0522": {
-      "userId": "hijh_0522",
-      "userName": "고주희",
-      "profilePicture": "/images/zuitopia.jpeg"
-    },
-    "eunwo.o_c": {
-      "userId": "eunwo.o_c",
-      "userName": "차은우",
-      "profilePicture": "/images/eunwoo.png"
-    },
-    "katarinabluu": {
-      "userId": "katarinabluu",
-      "userName": "KARINA",
-      "profilePicture": "/images/katarinabluu.png"
-    }
+[
+  {
+    "userId": "hijh_0522",
+    "userName": "고주희",
+    "profilePicture": "/images/zuitopia.jpeg",
+    "roomId": [1, 2, 3]
+  },
+  {
+    "userId": "dlwlrma",
+    "userName": "이지금",
+    "profilePicture": "/images/dlwlrma.jpg",
+    "roomId": 1
+  },
+  {
+    "userId": "eunwo.o_c",
+    "userName": "차은우",
+    "profilePicture": "/images/eunwoo.png",
+    "roomId": 2
+  },
+  {
+    "userId": "katarinabluu",
+    "userName": "KARINA",
+    "profilePicture": "/images/katarinabluu.png",
+    "roomId": 3
   }
-}
+]
