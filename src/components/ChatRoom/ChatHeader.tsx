@@ -3,17 +3,7 @@ import styled from '@emotion/styled';
 import { Text, Img } from '../styles/UI';
 import { useNavigate } from 'react-router-dom';
 
-type ReceiverType = {
-  userId: string;
-  userName: string;
-  profilePicture: string;
-};
-
-interface Props {
-  receiver?: ReceiverType;
-}
-
-export default function ChatHeader({ receiver }: Props) {
+export default function ChatHeader({ receiver }) {
   const navigate = useNavigate();
   const handleBackButtonClick = () => {
     navigate('/chats');

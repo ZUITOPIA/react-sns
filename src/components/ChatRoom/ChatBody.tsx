@@ -1,52 +1,28 @@
 import React, { useEffect, useRef } from 'react';
 import Message from '../Message/Message';
-import MessageDate from '../Message/MessageDate';
 
-type MessageType = {
-  isSender: boolean;
-  userId: string;
-  content: string;
-  timestamp: string;
-};
-
-type UserType = {
-  userId: string;
-  userName: string;
-};
-
-interface Props {
-  messages: MessageType[];
-  users: { [key: string]: UserType };
-}
-
-export default function ChatBody({ messages, users }: Props) {
-  let lastDate: string | '' = '';
+export default function ChatBody({ filteredMessages }) {
   const lastMessageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (lastMessageRef.current) {
       lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages]);
+  }, [filteredMessages]);
 
   return (
     <>
-      {messages.map((message, index) => {
-        const sender = users[message.userId];
-        const messageDate = new Date(message.timestamp).toLocaleDateString();
-
-        const showDate = messageDate !== lastDate;
-        lastDate = messageDate;
-
-        const isSender = Boolean(message.isSender);
-
+      {filteredMessages[0].messages.map((message, index) => {
         return (
           <div
-            key={message.timestamp}
-            ref={index === messages.length - 1 ? lastMessageRef : null}
+            key={index}
+            ref={
+              index === filteredMessages[0].messages.length - 1
+                ? lastMessageRef
+                : null
+            }
           >
-            {showDate && <MessageDate date={messageDate} />}
-            <Message message={message} sender={sender} isSender={isSender} />
+            <Message message={message} isOwner={message.isOwner} />
           </div>
         );
       })}
