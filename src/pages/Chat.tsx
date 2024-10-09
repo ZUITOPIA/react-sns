@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from '@emotion/styled';
 import { useParams } from 'react-router-dom';
 import ChatHeader from '../components/ChatRoom/ChatHeader';
@@ -34,10 +34,6 @@ export default function Chat() {
     (participant) => participant.userId !== OWNER_USER_ID
   );
 
-  const handleSendMessage = () => {
-    console.log('전송');
-  };
-
   return (
     <Style.Wrapper>
       <Style.Header>
@@ -48,7 +44,7 @@ export default function Chat() {
           <ChatBody filteredMessages={filteredMessages} />
         </Style.Body>
       </Style.BodyWrapper>
-      <ChatInput onSendMessage={handleSendMessage} />
+      <ChatInput />
     </Style.Wrapper>
   );
 }
