@@ -39,7 +39,7 @@
 
 - `useEffect` 와 `useRef`는 어떠한 상황에서 사용하나요?
 - `useState` `useEffect` `useRef` 이외에 어떤 hook들이 존재하나요?
-- Custom hook은 언제 사용할까요?
+- Custom hook은 언제 사용할까요 ?
 
 <br/>
 
